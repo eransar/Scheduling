@@ -29,15 +29,14 @@ namespace Scheduling
                     
                 }
 
-                if (maxid != -5)
-                {
-                    pids.Remove(maxid);
+
+                    dProcessTable[maxid].Quantum = quantom;
                     return maxid;
                 }
                
-            }
+          
 
-            return 0;
+            return -1;
         }
 
         public override void AddProcess(int iProcessId)

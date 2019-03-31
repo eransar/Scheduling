@@ -16,21 +16,25 @@ namespace Scheduling
 
         public override int NextProcess(Dictionary<int, ProcessTableEntry> dProcessTable)
         {
-            //set all quantoms to given quantom 
-            if (rr_q.Count > 0)
+            if (rr_q.Count == 0) // nothing in queue
             {
-                int process_id = rr_q.Dequeue();
-                dProcessTable[process_id].Quantum = quantom;
-                return process_id;
+                return -1;
             }
-
             else
             {
-                dProcessTable[0].Quantum = -1;
+                int processid = rr_q.Dequeue();
+                if (dProcessTable.ContainsKey(processid))
+                {
+                    dProcessTable[processid].Quantum = quantom;
+                    return processid;  
+                }
                 
             }
+
             return -1;
+
         }
+        
 
         public override void AddProcess(int iProcessId)
         {
@@ -41,5 +45,7 @@ namespace Scheduling
         {
             return true;
         }
+
+      
     }
 }

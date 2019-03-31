@@ -46,7 +46,7 @@ namespace Scheduling
             Disk disk = new Disk();
             CPU cpu = new CPU(disk);
             cpu.Debug = true;
-            OperatingSystem os = new OperatingSystem(cpu, disk, new RoundRobin(2));
+            OperatingSystem os = new OperatingSystem(cpu, disk, new RoundRobin(4));
 //            Example1(os);
 //            Example2(os);
 //            Example3(os);

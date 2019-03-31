@@ -166,7 +166,13 @@ namespace Scheduling
                 oldprocess.ProgramCounter = CPU.ProgramCounter;
                 oldprocess.Console = CPU.ActiveConsole;
                 oldprocess.LastCPUTime = CPU.TickCount;
-                CPU.RemainingTime = newprocess.Quantum;
+                if (m_spPolicy is RoundRobin || m_spPolicy is PrioritizedScheduling)
+                {
+                    CPU.RemainingTime = oldprocess.Quantum;
+                    CPU.RemainingTime = newprocess.Quantum;
+
+                }
+                
                 CPU.ActiveProcess = newprocess.ProcessId;
                 CPU.ActiveConsole = newprocess.Console;
                 CPU.ActiveAddressSpace = newprocess.AddressSpace;
